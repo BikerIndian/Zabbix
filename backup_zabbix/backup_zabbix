@@ -1,0 +1,84 @@
+#!/bin/sh
+
+# ***********************************************
+#  Backup Zabbix
+#  Date: 04.09.2017
+#  v1.00
+#  Authors:
+#  Vladimir Svishch (BikerIndian)  <mail:5693031@gmail.com>
+#  https://github.com/BikerIndian/
+# ***********************************************
+
+DIR_ZABBIX_00=/etc/zabbix
+DIR_ZABBIX_01=/usr/share/zabbix
+DIR_ZABBIX_02=/usr/share/doc/zabbix-*
+
+FILE_ZABBIX_00=/etc/httpd/conf.d/zabbix.conf
+
+
+
+DATECATALOG=`date +%Y%m%d`
+DATE="`date +%Y-%m-%d` `date +%H-%M-%S`"
+
+
+
+
+
+# Получаем рабочий каталог
+DIRROOT=$(cd $(dirname $0) && pwd)
+
+CATALOG="$DIRROOT/$DATECATALOG"
+
+
+# Подгружаем конфигурационный файл
+
+
+CONFIG=$DIRROOT/backup_zabbix.conf
+
+if ! [ -f $CONFIG ]; then
+echo "Конфигурационный файл $CONFIG не найден!"
+exit 1
+fi
+
+. $CONFIG  # после точки пробел!
+# //<-
+
+echo
+echo "      *** Backup ZABBIX 3.2 ***"
+echo "       $DATE"
+
+mkdir $CATALOG
+cp  $CONFIG $CATALOG
+
+echo
+echo " Zabbix Server STOP "
+service zabbix-server stop
+
+echo
+echo " Backup MySql BASE "
+mysqldump  --max-allowed-packet=1073741824 --user=$USER --password=$PASSWORD  -R $DATABASE | gzip -9 -c > $CATALOG/sql_zabbix.gz
+
+echo
+echo " Backup $DIR_ZABBIX_00"
+tar czf $CATALOG/dir_zabbix_00.tgz $DIR_ZABBIX_00 >/dev/null
+
+echo
+echo " Backup $DIR_ZABBIX_01"
+tar czf $CATALOG/dir_zabbix_01.tgz $DIR_ZABBIX_01 >/dev/null
+
+
+echo
+echo " Backup $DIR_ZABBIX_02"
+tar czf $CATALOG/dir_zabbix_02.tgz $DIR_ZABBIX_02 >/dev/null
+#tar czf $CATALOG/file_zabbix_00.tgz $FILE_ZABBIX_00 >/dev/null
+
+tar czf $DIRROOT/$DATECATALOG.tgz ./$DATECATALOG >/dev/null
+
+echo
+echo " Zabbix Server START "
+service zabbix-server start
+
+
+echo
+echo "       *** END ***"
+rm -rf ./$DATECATALOG
