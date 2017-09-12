@@ -49,4 +49,7 @@ echo "  Для входа в WEB"
 echo
 echo " Username = Admin"
 echo " Password = zabbix"
-
+echo
+echo "Если при настройке PHP option date.timezone Fail"
+echo "то сюда -> /etc/php5/apache2/php.ini"
+echo "меняем: date.timezone = Europe/Moscow"
