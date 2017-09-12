@@ -1,0 +1,101 @@
+#!/bin/bash
+
+# ***********************************************
+#  Seup Zabbix 3.4
+#  Date: 12.09.2017
+#  v1.00
+#  Authors:
+#  Vladimir Svishch (BikerIndian)  <mail:5693031@gmail.com>
+#  https://github.com/BikerIndian/Zabbix
+# ***********************************************
+echo
+echo "  **********************************************"
+echo "              Zabbix установка    "
+echo "  **********************************************"
+
+
+# Получаем рабочий каталог
+DIRROOT=$(cd $(dirname $0) && pwd)
+
+# конфигурационный файл
+CONFIG=$DIRROOT/zabbix.conf
+
+if ! [ -f $CONFIG ]; then
+echo
+echo "  Конфигурационный файл"
+echo "   $CONFIG"
+echo "  не найден!"
+exit 1
+fi
+
+# Подгружаем конфигурационный файл
+. $CONFIG  # после точки пробел!
+
+
+
+# Поиск и печать
+echo 
+echo " Найдено в /etc/zabbix/zabbix_server.conf"
+echo " Было"
+sed -n '/DBPassword=/p' /etc/zabbix/zabbix_server.conf
+echo " Стало"
+sudo sed -i -e "s/DBPassword=.*/DBPassword="$PASSWORD"/g" /etc/zabbix/zabbix_server.conf
+sed -n '/DBPassword=/p' /etc/zabbix/zabbix_server.conf
+echo
+echo " Если не удалось поменять, то поменять в ручную."
+echo "  vi /etc/zabbix/zabbix_server.conf"
+echo
+echo
+
+
+
+FILES_SQL="/usr/share/doc/zabbix-server-mysql/create.sql.gz"
+
+# Enter login:
+read  -p " MYSQL: Введите пользователя администратора базы: "  ROOTLOGIN
+
+# Enter password:
+read  -s -p " MYSQL: Введите пароль администратора базы: "  ROOTPASSWORD
+
+# Поиск путей
+MYSQL_BIN=$(which mysql)
+
+# Проверьте можете подключится к серверу
+#$MYSQL_BIN -u $USER -p$PASSWORD -h $HOST -e "use $DATABASE"  &>/dev/null
+$MYSQL_BIN -u $ROOTLOGIN -p$ROOTPASSWORD -h $HOST -e "SELECT DATABASE();"   &>/dev/null
+if [ $? -ne 0 ]
+then
+    echo
+    echo
+    echo "Не возможно подключиться к MySQL под пользователем $ROOTLOGIN!"
+    exit 2
+fi
+
+
+echo " - Создаем пользователя "
+mysql -u $ROOTLOGIN -p$ROOTPASSWORD -e "CREATE USER \`$USER\`@\`$HOST\` IDENTIFIED BY \"$PASSWORD\";"
+if [ $? -ne 0 ]
+then
+    echo
+    echo " Пользователь возможно существует."
+fi
+
+
+
+
+echo " - Создаем базу"
+mysql -u $ROOTLOGIN -p$ROOTPASSWORD -e "CREATE DATABASE \`$DATABASE\` CHARACTER SET utf8 COLLATE utf8_bin;"
+if [ $? -ne 0 ]
+then
+    echo
+    echo " База данных возможно существует."
+fi
+
+echo
+echo " - Устанавливаем права"
+mysql -u $ROOTLOGIN -p$ROOTPASSWORD -e "GRANT ALL PRIVILEGES ON \`$DATABASE\` . * TO \`$USER\`@\`$HOST\` WITH GRANT OPTION;"
+
+echo " Заполняем"
+zcat /$FILES_SQL | mysql -u $USER -p$PASSWORD $DATABASE
+echo;
+
