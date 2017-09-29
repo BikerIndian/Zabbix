@@ -10,8 +10,11 @@
 @BotFather выдаст TOKEN
 
 Создать группу: MyGroup
+
 Добавить в группу:  MyBot_bot
+
 Узнать ID группы
+
 https://api.telegram.org/bot4587777777:AAAAA_AAAAAAAAAAAAAAAAAAAAAAAAAAAA/getUpdates
 
 ## Настройка Zabbix
@@ -19,17 +22,24 @@ https://api.telegram.org/bot4587777777:AAAAA_AAAAAAAAAAAAAAAAAAAAAAAAAAAA/getUpd
 
 
 Меняем в telegram.sh
+
 TOKEN='4587777777:AAAAA_AAAAAAAAAAAAAAAAAAAAAAAAAAAA'
 
 
 Администрирование > Способы оповещений > Создать способ оповещения
+
 Имя: Telegram
+
 Тип: Скрипт
+
 Имя скрипта: telegram.sh
 
 Параметры скрипта
+
 {ALERT.SENDTO}
+
 {ALERT.SUBJECT}
+
 {ALERT.MESSAGE}
 
 ## Добавить оповищения пользователю.
