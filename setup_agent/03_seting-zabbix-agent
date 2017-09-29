@@ -1,0 +1,8 @@
+#https://www.zabbix.com/documentation/3.4/ru/manual/installation/install_from_packages
+# Указываем наш сервер Zabbix - например, 192.168.6.190
+sed -i 's/^Server=.*/Server=192.168.6.190/g' /etc/zabbix/zabbix_agentd.conf
+#Отключаем активные проверки
+sed -i  '/^ServerActive=/s/^/\#/' /etc/zabbix/zabbix_agentd.conf
+#Указываем уникальное имя компьютера под управлением Debian - например, celraid
+#sed -i 's/^Hostname=.*/Hostname=celraid/g' /etc/zabbix/zabbix_agentd.conf
+

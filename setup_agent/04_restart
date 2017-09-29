@@ -1,0 +1,2 @@
+#https://www.zabbix.com/documentation/3.4/ru/manual/installation/install_from_packages
+service zabbix-agent restart
