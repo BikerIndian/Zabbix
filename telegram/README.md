@@ -42,4 +42,9 @@ TOKEN='4587777777:AAAAA_AAAAAAAAAAAAAAAAAAAAAAAAAAAA'
 
 {ALERT.MESSAGE}
 
-## Добавить оповищения пользователю.
+## Используемые материалы
+<https://www.shellhacks.com/ru/telegram-api-send-message-personal-notification-bot/>
+
+api
+<https://core.telegram.org/bots/api>
+
