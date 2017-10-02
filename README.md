@@ -5,6 +5,7 @@ wget --no-check-certificate https://github.com/BikerIndian/Zabbix/raw/master/set
 
 ## Макросы 
 [Cписок поддерживаемых макросов ](https://www.zabbix.com/documentation/3.4/ru/manual/appendix/macros/supported_by_location)
+
 [Старый, но на мой взгляд более удобный список](https://www.zabbix.com/documentation/2.4/ru/manual/appendix/macros/supported_by_location)
 
 {HOST.NAME} - Видимое имя узла сети.
