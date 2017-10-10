@@ -1,5 +1,8 @@
 # Zabbix
-Vladimir. S.
+Vladimir Svishch (IndianBiker) 
+
+[<mail:5693031@gmail.com>](mailto::5693031@gmail.com)
+ 
 
 Скачивание
 
@@ -48,20 +51,24 @@ wget --no-check-certificate https://github.com/BikerIndian/Zabbix/raw/master/set
 
 tcpdump -s0 -nn -q -A port 10051
 
+### Проверка zabbix_get 
+
+`zabbix_get -s 192.168.66.66 -k vfs.fs.size[/,free]`
+
 ### Установка /  Удаление
 
 **Репозитарий ZABBIX :** http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix/
 
-**Скачиваем:** wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix/zabbix-proxy-mysql_3.0.4-1+trusty_amd64.deb
+**Скачиваем:** `wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix/zabbix-proxy-mysql_3.0.4-1+trusty_amd64.deb`
 
-**Установка:** dpkg -i zabbix-proxy-mysql_3.0.4-1+trusty_i386.deb
+**Установка:** `dpkg -i zabbix-proxy-mysql_3.0.4-1+trusty_i386.deb`
 
-**Список установленных пакетов:** dpkg --list | grep zabbix*
+**Список установленных пакетов:** `dpkg --list | grep zabbix*`
 
-**Полное удаление:** dpkg --purge zabbix-agent
+**Полное удаление:** `dpkg --purge zabbix-agent`
 
-**Удалить пакет текущий репозитория :** rm -Rf /etc/apt/sources.list.d/zabbix.repo
+**Удалить пакет текущий репозитория :** `rm -Rf /etc/apt/sources.list.d/zabbix.repo`
 
-**Заполняем базу:** zcat /usr/share/doc/zabbix-proxy-mysql/schema.sql.gz | mysql -uzabbix -pXXX zabbix_proxy
+**Заполняем базу:** `zcat /usr/share/doc/zabbix-proxy-mysql/schema.sql.gz | mysql -uzabbix -pXXX zabbix_proxy`
 
 
