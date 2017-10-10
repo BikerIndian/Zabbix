@@ -5,6 +5,7 @@
 [Специальные OID'ы](https://www.zabbix.com/documentation/3.4/ru/manual/config/items/itemtypes/snmp/special_mibs)
 
 ifDescr		[1.3.6.1.2.1.2.2.1.2] 	Текстовая строка, которая содержит информацию о интерфейсе.
+
 ifOperStatus	[1.3.6.1.2.1.2.2.1.8] 	Текущее рабочее состояние интерфейса. 
 
 ##  Утилиты 

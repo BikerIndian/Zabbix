@@ -14,15 +14,13 @@ wget --no-check-certificate https://github.com/BikerIndian/Zabbix/raw/master/set
 
 {HOST.CONN} - IP или DNS имя узла сети
 
-## Проверка proxy 
+## [Типы элементов данных](https://www.zabbix.com/documentation/3.4/ru/manual/config/items/itemtypes/zabbix_agent)
 
-[Типы элементов данных] (https://www.zabbix.com/documentation/3.4/ru/manual/config/items/itemtypes/zabbix_agent)
-
-* [Zabbix агент] (https://www.zabbix.com/documentation/3.4/ru/manual/config/items/itemtypes/zabbix_agent)
+* [Zabbix агент](https://www.zabbix.com/documentation/3.4/ru/manual/config/items/itemtypes/zabbix_agent)
 
     vfs.fs.size[fs,<режим>]  free, used, pfree, pused
 
-* [SNMP агент] (https://www.zabbix.com/documentation/3.4/ru/manual/config/items/itemtypes/snmp)
+* [SNMP агент](https://www.zabbix.com/documentation/3.4/ru/manual/config/items/itemtypes/snmp)
     
 
 ## Заметки
@@ -30,34 +28,40 @@ wget --no-check-certificate https://github.com/BikerIndian/Zabbix/raw/master/set
 ### [[SNMP]](https://github.com/BikerIndian/Zabbix/tree/master/Examples/SNMP) <<-- Нажми
 ### [Единица измерения](https://www.zabbix.com/documentation/3.4/ru/manual/config/items/item)
 
-B - байт
+**B** - байт
 
-Bps - байты в секунду 
+**Bps** - байты в секунду 
 
-unixtime - переводится в “гггг.мм.дд чч:мм:сс”.
+**unixtime** - переводится в “гггг.мм.дд чч:мм:сс”.
 
-uptime - переводится в “чч:мм:сс” или в “N дней
+**uptime** - переводится в “чч:мм:сс” или в “N дней
 
-s - переводится в “ггг ммм ддд ччч ммм ссс мс”; параметр рассматривается как количество секунд.
+**s** - переводится в “ггг ммм ддд ччч ммм ссс мс”; параметр рассматривается как количество секунд.
 
  [Символы единиц измерения](https://www.zabbix.com/documentation/3.4/ru/manual/config/triggers/suffixes)
 
-K - кило	M - мега	G - гига	T - тера
+**K** - кило, **M** - мега, **G** - гига, **T** - тера
 
-s - секунды	m - минуты	h - часы	d - дни	w - недели
+**s** - секунды, **m** - минуты, **h** - часы, **d** - дни, **w** - недели
 
 ### Проверка proxy 
 
 tcpdump -s0 -nn -q -A port 10051
 
-### Удаление
+### Установка /  Удаление
 
-Полное удаление:
-dpkg --purge zabbix-agent
+**Репозитарий ZABBIX :** http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix/
 
-dpkg --purge zabbix-proxy-mysql
+**Скачиваем:** wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix/zabbix-proxy-mysql_3.0.4-1+trusty_amd64.deb
 
-удалить пакет текущий репозитория
+**Установка:** dpkg -i zabbix-proxy-mysql_3.0.4-1+trusty_i386.deb
 
-rm -Rf /etc/apt/sources.list.d/zabbix.repo
+**Список установленных пакетов:** dpkg --list | grep zabbix*
+
+**Полное удаление:** dpkg --purge zabbix-agent
+
+**Удалить пакет текущий репозитория :** rm -Rf /etc/apt/sources.list.d/zabbix.repo
+
+**Заполняем базу:** zcat /usr/share/doc/zabbix-proxy-mysql/schema.sql.gz | mysql -uzabbix -pXXX zabbix_proxy
+
 
