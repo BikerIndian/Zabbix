@@ -27,7 +27,24 @@ wget --no-check-certificate https://github.com/BikerIndian/Zabbix/raw/master/set
 
 ## Заметки
 
-### [[SNMP]](https://github.com/BikerIndian/Zabbix/Examples/SNMP)
+### [[SNMP]](https://github.com/BikerIndian/Zabbix/tree/master/Examples/SNMP) <<-- Нажми
+### [Единица измерения](https://www.zabbix.com/documentation/3.4/ru/manual/config/items/item)
+
+B - байт
+
+Bps - байты в секунду 
+
+unixtime - переводится в “гггг.мм.дд чч:мм:сс”.
+
+uptime - переводится в “чч:мм:сс” или в “N дней
+
+s - переводится в “ггг ммм ддд ччч ммм ссс мс”; параметр рассматривается как количество секунд.
+
+ [Символы единиц измерения] (https://www.zabbix.com/documentation/3.4/ru/manual/config/triggers/suffixes)
+
+K - кило	M - мега	G - гига	T - тера
+
+s - секунды	m - минуты	h - часы	d - дни	w - недели
 
 ### Проверка proxy 
 
