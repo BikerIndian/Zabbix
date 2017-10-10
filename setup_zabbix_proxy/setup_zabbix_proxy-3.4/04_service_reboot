@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# ***********************************************
+#  Setup Zabbix Proxy 3.4
+#  Date: 04.10.2017
+#  v1.00
+#  Authors:
+#  Vladimir Svishch (BikerIndian)  <mail:5693031@gmail.com>
+#  https://github.com/BikerIndian/Zabbix
+# ***********************************************
+
+
+sudo service zabbix-proxy restart
+# Добавляем в автозагрузку
+sudo update-rc.d zabbix-proxy enable
+sudo service  apache2 restart

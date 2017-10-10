@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# ***********************************************
+#  Setup Zabbix Proxy 3.4
+#  Date: 04.10.2017
+#  v1.00
+#  Authors:
+#  Vladimir Svishch (BikerIndian)  <mail:5693031@gmail.com>
+#  https://github.com/BikerIndian/Zabbix
+# ***********************************************
+
+# Информация по установке
+# https://www.zabbix.com/documentation/3.4/ru/manual/installation/install_from_packages/debian_ubuntu
+
+#sudo su
+
+# Получаем рабочий каталог
+DIRROOT=$(cd $(dirname $0) && pwd)
+
+cd $DIRROOT
+sudo mkdir ./download
+cd ./download
+sudo wget http://repo.zabbix.com/zabbix/3.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.4-1+trusty_all.deb
+
+
+sudo dpkg -i zabbix-release_3.4-1+trusty_all.deb
+sudo apt-get update
+
+# установка Zabbix Proxy. 
+sudo apt-get install zabbix-proxy-mysql
+
+# Для проверки агентов
+sudo apt-get install zabbix-get
+#
+sudo apt-get install zabbix-agent
+

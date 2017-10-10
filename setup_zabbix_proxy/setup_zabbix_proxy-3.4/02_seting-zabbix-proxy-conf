@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# ***********************************************
+#  Setup Zabbix Proxy 3.4
+#  Date: 04.10.2017
+#  v1.00
+#  Authors:
+#  Vladimir Svishch (BikerIndian)  <mail:5693031@gmail.com>
+#  https://github.com/BikerIndian/Zabbix
+# ***********************************************
+
+
+# Получаем рабочий каталог
+DIRROOT=$(cd $(dirname $0) && pwd)
+
+# конфигурационный файл
+CONFIG=$DIRROOT/zabbix.conf
+
+if ! [ -f $CONFIG ]; then
+echo
+echo "  Конфигурационный файл"
+echo "   $CONFIG"
+echo "  не найден!"
+exit 1
+fi
+
+# Подгружаем конфигурационный файл
+. $CONFIG  # после точки пробел!
+
+ZABBIX_PROXY_CONFIG="/etc/zabbix/zabbix_proxy.conf"
+
+BACKUP_FILE="$ZABBIX_PROXY_CONFIG."`date +%Y%m%d%H%M%S`
+
+cp $ZABBIX_PROXY_CONFIG $BACKUP_FILE
+# Поиск и печать
+echo 
+echo " Найдено в $ZABBIX_PROXY_CONFIG"
+echo -n " Было: "
+sed -n '/DBPassword=/p' $ZABBIX_PROXY_CONFIG
+echo -n " Стало: "
+
+sudo sed -i -e "s/DBPassword=.*/DBPassword="$PASSWORD"/g" $ZABBIX_PROXY_CONFIG
+sed -n '/DBPassword=/p' $ZABBIX_PROXY_CONFIG
+
+echo
+echo -n " Было: "
+sed -n '/^Server=/p' $ZABBIX_PROXY_CONFIG
+
+sudo sed -i -e "s/DBPassword=.*/DBPassword="$PASSWORD"/g" $ZABBIX_PROXY_CONFIG
+sed -i "s/^Server=.*/Server="$IP_SERVER"/g" $ZABBIX_PROXY_CONFIG
+
+echo -n " Стало: "
+sed -n '/^Server=/p' $ZABBIX_PROXY_CONFIG
+
+
+echo
+echo " Если не удалось поменять, то поменять в ручную."
+echo "  vi /etc/zabbix/$ZABBIX_PROXY_CONFIG"
+echo
+echo
