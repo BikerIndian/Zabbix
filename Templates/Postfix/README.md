@@ -2,7 +2,7 @@
 
 Vladimir Svishch (IndianBiker)
 
-[<mail:5693031@gmail.com>](mailto::5693031@gmail.com)
+[mail:5693031@gmail.com](mailto:5693031@gmail.com)
 
 ## Postfix
 **Скрипт положить в папку** ->> /etc/zabbix/scripts/zabbix-postfix-stats.sh 

@@ -1,7 +1,7 @@
 # Zabbix
 Vladimir Svishch (IndianBiker) 
 
-[<mail:5693031@gmail.com>](mailto::5693031@gmail.com)
+[mail:5693031@gmail.com](mailto:5693031@gmail.com)
  
 
 Скачивание
@@ -28,8 +28,8 @@ wget --no-check-certificate https://github.com/BikerIndian/Zabbix/raw/master/set
 
 ## Заметки
 
-### [[SNMP]](https://github.com/BikerIndian/Zabbix/tree/master/Examples/SNMP) <<-- Нажми
-### [Единица измерения](https://www.zabbix.com/documentation/3.4/ru/manual/config/items/item)
+*### [[SNMP]](https://github.com/BikerIndian/Zabbix/tree/master/Examples/SNMP) <<-- Нажми
+*### [Единица измерения](https://www.zabbix.com/documentation/3.4/ru/manual/config/items/item)
 
 **B** - байт
 
@@ -41,21 +41,21 @@ wget --no-check-certificate https://github.com/BikerIndian/Zabbix/raw/master/set
 
 **s** - переводится в “ггг ммм ддд ччч ммм ссс мс”; параметр рассматривается как количество секунд.
 
- [Символы единиц измерения](https://www.zabbix.com/documentation/3.4/ru/manual/config/triggers/suffixes)
+*### [Символы единиц измерения](https://www.zabbix.com/documentation/3.4/ru/manual/config/triggers/suffixes)
 
 **K** - кило, **M** - мега, **G** - гига, **T** - тера
 
 **s** - секунды, **m** - минуты, **h** - часы, **d** - дни, **w** - недели
 
-### Проверка proxy 
+*### Проверка proxy 
 
 tcpdump -s0 -nn -q -A port 10051
 
-### Проверка zabbix_get 
+*### Проверка zabbix_get 
 
 `zabbix_get -s 192.168.66.66 -k vfs.fs.size[/,free]`
 
-### Установка /  Удаление
+*### Установка /  Удаление
 
 **Репозитарий ZABBIX :** http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix/
 
