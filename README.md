@@ -40,7 +40,7 @@ uptime - переводится в “чч:мм:сс” или в “N дней
 
 s - переводится в “ггг ммм ддд ччч ммм ссс мс”; параметр рассматривается как количество секунд.
 
- [Символы единиц измерения] (https://www.zabbix.com/documentation/3.4/ru/manual/config/triggers/suffixes)
+ [Символы единиц измерения](https://www.zabbix.com/documentation/3.4/ru/manual/config/triggers/suffixes)
 
 K - кило	M - мега	G - гига	T - тера
 
